@@ -1,2 +1,2 @@
 # SpF-Research-Project
-SpF Research Project that is pushed onto main server
+SpF Research Project that resides on the main server

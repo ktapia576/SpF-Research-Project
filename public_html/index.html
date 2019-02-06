@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>spf2018</title>
+	<script src="view/js/utility.js"></script>
+	<script type="text/javascript">
+    	if(findGetParameter('action') != null && findGetParameter('action') != ''){
+        	var action = findGetParameter('action');
+        	//alert(action);
+        	document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        	document.cookie = "userFName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        	document.cookie = "userLName=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+        window.location.href = "view/login.html"
+        /*if(getCookie('userObject') != null && getCookie('userObject') != '') {
+        	var userObject = getCookie('userObject');
+        	var userJson = JSON.parse(userObject);
+		}
+        else
+       		window.location.href = "view/login.html"  */     
+    </script>
+
+</head>
+<body>
+</body>
+</html>

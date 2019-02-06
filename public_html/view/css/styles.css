@@ -1,0 +1,195 @@
+#map {
+        height: 400px;
+        width: 600px;
+        float: left;
+        margin-left: 30px;
+        margin-right: 30px;
+       }
+
+       #panel {
+        float: left;
+        margin-top: 72px;
+        margin-left: 42px;
+        justify-content: center;
+        text-align: center;
+        vertical-align: center;
+       }
+
+       h1 {
+        color: blue;
+        
+       }
+
+       .alignleft {
+        margin-top: 0px;
+        float: left;
+        width:33.33333%;
+        text-align:left;
+        margin-bottom: -10px;
+      }
+      .aligncenter {
+        float: left;
+        width:33.33333%;
+        text-align:center;
+        margin-top: -5px;
+      }
+      .alignright {
+       float: left;
+       width:33.33333%;
+       text-align:right;
+      }​
+
+      .navbar {
+    overflow: hidden;
+    background-color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: blue;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.dropdown {
+    float: right;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.titlebar {
+
+    padding-right: 7px;
+    padding-left: 7px;
+
+}
+
+.dropdown .dropbtn {
+    cursor: pointer;
+    font-size: 16px;    
+    border: none;
+    outline: none;
+    color: white;
+    text-decoration: none;
+    padding: 14px 16px;
+    background-color: blue;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+.dropdown:hover .dropbtn, .dropbtn:focus {
+    background-color: grey;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+    min-width: 60px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.show {
+    display: block;
+}
+
+.Button1 {
+    margin: 0 auto;
+    width: 100%;
+    -moz-box-shadow: 0px 0px 0px 2px #ff4d4d;
+    -webkit-box-shadow: 0px 0px 0px 2px #ff4d4d;
+    box-shadow: 0px 0px 0px 2px #ff4d4d;
+    background-color:#ff0000;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:1px solid #ff4d4d;
+    display:block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:12px 37px;
+    text-align:center;
+    text-decoration: none;
+    text-shadow:0px 1px 0px #283966;
+}
+.Button2 {
+    margin: 0 auto;
+    width: 100%;
+    -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background-color:#7892c2;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:1px solid #4e6096;
+    display:block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:19px;
+    padding:12px 37px;
+    text-align:center;
+    text-decoration: none;
+    text-shadow:0px 1px 0px #283966;
+}
+.Button1:hover {
+  background-color: #b20000;
+  
+}
+.Button1:active {
+  background:linear-gradient(to bottom, #ff0000 5%, #b20000 100%);
+}
+.Button2:hover {
+  background-color: #476e9e;
+  
+}
+.Button2:active {
+  background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+}
+
+.Button3 {
+    margin: 0 auto;
+    width: 10%;
+    -moz-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    -webkit-box-shadow: 0px 0px 0px 2px #9fb4f2;
+    box-shadow: 0px 0px 0px 2px #9fb4f2;
+    background-color:#7892c2;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:6px;
+    border:1px solid #4e6096;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:10px;
+    padding:6px 10px 10px 10px;
+    text-align:center;
+    text-decoration: none;
+    text-shadow:0px 1px 0px #283966;
+}
+.Button3:hover {
+  background-color: #476e9e;
+  
+}
+.Button3:active {
+  background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+}

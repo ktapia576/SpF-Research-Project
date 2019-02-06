@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Main Page</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="js/utility.js"></script>
+	<script>
+
+	        // Put event listeners into place
+	        window.addEventListener("DOMContentLoaded", function() {
+	            // Grab elements, create settings, etc.
+	            var userName = 'Welcome, ' + getCookie('userFName') + ' ' + getCookie('userLName');
+	            document.getElementById('userNameLabel').innerHTML = userName;
+	            var canvas = document.getElementById("canvas"),
+	                context = canvas.getContext("2d"),
+	                video = document.getElementById("video"),
+	                videoObj = { "video": true },
+	                image_format= "jpeg",
+	                jpeg_quality= 85,
+	                errBack = function(error) {
+	                    console.log("Video capture error: ", error.code); 
+	                };
+
+
+	            // Put video listeners into place
+	            if(navigator.getUserMedia) { // Standard
+	                navigator.getUserMedia(videoObj, function(stream) {
+	                    if (video.mozSrcObject !== undefined) { // FF18a
+			              video.mozSrcObject = stream;
+			            } else if (video.srcObject !== undefined) {
+			              video.srcObject = stream;
+			            } else { // FF16a, 17a
+			              video.src = stream;
+			            }
+	                    video.play();
+	                    $("#snap").show();
+	                }, errBack);
+	            } else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
+	                navigator.webkitGetUserMedia(videoObj, function(stream){
+	                	if (video.mozSrcObject !== undefined) { // FF18a
+			              video.mozSrcObject = window.webkitURL.createObjectURL(stream);
+			            } else if (video.srcObject !== undefined) {
+			              video.srcObject = window.webkitURL.createObjectURL(stream);
+			            } else { // FF16a, 17a
+			              video.src = window.webkitURL.createObjectURL(stream);
+			            }
+	                    video.play();
+	                    $("#snap").show();
+	                }, errBack);
+	            } else if(navigator.mozGetUserMedia) { // moz-prefixed
+	                navigator.mozGetUserMedia(videoObj, function(stream){
+	                	if (video.mozSrcObject !== undefined) { // FF18a
+			              video.mozSrcObject = window.URL.createObjectURL(stream);
+			            } else if (video.srcObject !== undefined) {
+			              video.srcObject = window.URL.createObjectURL(stream);
+			            } else { // FF16a, 17a
+			              video.src = window.URL.createObjectURL(stream);
+			            }
+	                    video.play();
+	                    $("#snap").show();
+	                }, errBack);
+	            }
+	                  // video.play();       these 2 lines must be repeated above 3 times
+	                  // $("#snap").show();  rather than here once, to keep "capture" hidden
+	                  //                     until after the webcam has been activated.  
+
+	            // Get-Save Snapshot - image 
+	            document.getElementById("snap").addEventListener("click", function() {
+	                context.drawImage(video, 0, 0, 600, 400);
+	                // the fade only works on firefox?
+	                $("#video").fadeOut("slow");
+	                $("#canvas").fadeIn("slow");
+	                $("#snap").hide();
+	                $("#reset").show();
+	                $("#upload").show();
+	            });
+	            // reset - clear - to Capture New Photo
+	            document.getElementById("reset").addEventListener("click", function() {
+	                $("#video").fadeIn("slow");
+	                $("#canvas").fadeOut("slow");
+	                $("#snap").show();
+	                $("#reset").hide();
+	                $("#upload").hide();
+	            });
+	            // Upload image to sever 
+	            document.getElementById("upload").addEventListener("click", function(){
+	                var dataUrl = canvas.toDataURL("image/jpeg", 0.85);
+	                $("#uploading").show();
+	                $.ajax({
+	                  type: "POST",
+	                  url: "../controller/webcamImageSave.php",
+	                  data: { 
+	                     imgBase64: dataUrl,
+	                     userId: getCookie('userId'),
+	                     userFName: getCookie('userFName'),
+	                     userLName: getCookie('userLName')
+	                     //user: "Joe",       
+	                     //userid: 25         
+	                  }
+	                }).done(function(msg) {
+//	                	alert (msg);
+	                  console.log("saved");
+	                  $("#uploading").hide();
+	                  $("#uploaded").show();
+			  document.getElementById('resultLabel').innerHTML = msg;
+
+	                });
+	            });
+	        }, false);
+	   </script>
+</head>
+<body>
+	<br>
+	<div id="titlebar" class="titlebar">
+      <h2 class="alignleft"><img src="resources/Kean_Logo.png" alt="Kean Logo"
+      width="80px" height="80px"></h2>
+      <h1 class="aligncenter">SPF 2018</h2>
+      <div class="alignright">
+        <div class="navbar">
+          <div class="userDetailDiv">
+             <label id="userNameLabel"> </label>
+          </div>
+          <div class="dropdown">
+            <a href="../index.html?action=logout">Log Out</a>
+           </div>
+           </div>
+      </div>
+      <br>
+      <br>
+      <br>
+   </div>
+	<br>
+	<hr>
+	<div class="camcontent">
+	    <video id="video" autoplay></video>
+	    <canvas id="canvas" width="600" height="400">
+	</div>
+	<br>
+	<div class="cambuttons">
+	    <button id="snap" style="display:none;">  Capture </button> 
+	    <button id="reset" style="display:none;">  Reset  </button>     
+	    <button id="upload" style="display:none;"> Upload </button> 
+	    <br>
+	    <span id=uploading style="display:none;"> Uploading has begun . . .  </span> 
+	         <span id=uploaded  style="display:none;"> Success, your photo has been uploaded!
+			<br/><br/>
+
+			<h2>Results:<br/>
+			<label id="resultLabel"></label> 
+			<br></h2>
+	                <a href="main.html"> Upload another photo </a> </span> 
+	 </div>
+
+	<br>
+	
+	<a href="dashboard.html">Back to dashboard</a>	
+</body>
+</html>

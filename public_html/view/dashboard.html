@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="js/utility.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var userName = 'Welcome, ' + getCookie('userFName') + ' ' + getCookie('userLName');
+            document.getElementById('userNameLabel').innerHTML = userName;
+      	});
+	</script>
+</head>
+<body>
+	<br>
+	<div id="titlebar" class="titlebar">
+      <h2 class="alignleft"><img src="resources/Kean_Logo.png" alt="Kean Logo"
+      width="80px" height="80px"></h2>
+      <h1 class="aligncenter">SPF 2018</h2>
+      <div class="alignright">
+        <div class="navbar">
+          <div class="userDetailDiv">
+             <label id="userNameLabel"> </label>
+          </div>
+          <div class="dropdown">
+            <a href="../index.html?action=logout">Log Out</a>
+           </div>
+           </div>
+      </div>
+      <br>
+      <br>
+      <br>
+   </div>
+	<br>
+	<hr>	
+
+
+	<div class="cambuttons">
+		<br>
+		<br>
+	     <a href= "main.html" >Upload Image</a><br>
+	     <a href= "userImages.html" >View Images</a> 
+	</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<style type="text/css">
+		table, th, td {
+		    border: 1px solid black;
+		}
+	</style>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="js/utility.js"></script>
+	<script type="text/javascript">
+			$(document).ready(function(){
+				var userName = 'Welcome, ' + getCookie('userFName') + ' ' + getCookie('userLName');
+	            document.getElementById('userNameLabel').innerHTML = userName;
+	      	});
+
+	      	//use cookie to read user details
+	      	var userId = getCookie('userId');
+	      
+	      	$.ajax({ 
+	              type: "GET",
+	              url: "../controller/getUserImages.php?userId=" + userId,
+	              context: document.body,
+	              success: function(images){
+	              	var imageArray = JSON.parse(images);
+
+                 	var table = document.createElement('table');
+                 	var tableHeader = document.createElement('tr');
+				    var th2 = document.createElement('th');
+				    var th3 = document.createElement('th');
+				    var th4 = document.createElement('th');
+				    var th5 = document.createElement('th');
+				    var textHeader2 = document.createTextNode('Image name');
+				    var textHeader3 = document.createTextNode('Upload date');
+				    var textHeader4 = document.createTextNode('Image');
+				    var textHeader5 = document.createTextNode('Delete');
+
+				    th2.appendChild(textHeader2);
+				    th3.appendChild(textHeader3);
+				    th4.appendChild(textHeader4);
+				    th5.appendChild(textHeader5);
+
+				    tableHeader.appendChild(th4);
+				    tableHeader.appendChild(th2);
+				    tableHeader.appendChild(th3);
+				    tableHeader.appendChild(th5);
+
+					table.appendChild(tableHeader);
+
+					for (var i = 0; i < imageArray.length; i++){
+					    var tr = document.createElement('tr');   
+
+					    var td2 = document.createElement('td');
+					    var td3 = document.createElement('td');
+					    var td4 = document.createElement('td');
+					    var td5 = document.createElement('td');
+
+					    var text2 = document.createTextNode(imageArray[i].image_name);
+					    td2.appendChild(text2);
+					    var text3 = document.createTextNode(imageArray[i].upload_date);
+					    td3.appendChild(text3);
+
+					    //get the image here thru php and stick it in a variable
+					    var request = new XMLHttpRequest();
+						request.open('GET', '../controller/getImage.php?imagePath='+imageArray[i].path+''+imageArray[i].image_name, false);
+						request.onload = function () {
+							var imageField = document.createElement('img');
+							imageField.width="80";
+							imageField.height="80";
+							imageField.src = this.response;
+						    td4.appendChild(imageField);
+						}
+						request.send();
+
+					    var deleteBtn = document.createElement('input');
+					    deleteBtn.type='button';
+					    deleteBtn.value = "Delete this image";
+					    deleteBtn.onclick = function() { 
+						    deleteImage(this.parentNode.parentNode.rowIndex, imageArray);
+						};
+
+					    td5.appendChild(deleteBtn);
+
+					    tr.appendChild(td4);
+					    tr.appendChild(td2);
+					    tr.appendChild(td3);
+					    tr.appendChild(td5);
+
+					    table.appendChild(tr);
+					}
+					var mainDivContent = document.getElementById('mainContent');
+
+					mainDivContent.appendChild(table);
+                }});
+
+	      	function deleteImage(rowIndex, imageArray) {
+		    	var request = new XMLHttpRequest();
+				request.open('GET', '../controller/deleteImage.php?imageId='+imageArray[rowIndex-1].iid, false);
+				request.onload = function () {
+					alert('Successfully deleted image');
+					document.location.reload();
+				}
+				request.send();
+	      	}
+  	</script>	
+</head>	
+
+<body>
+	<br>
+	<div id="titlebar" class="titlebar">
+      <h2 class="alignleft"><img src="resources/Kean_Logo.png" alt="Kean Logo"
+      width="80px" height="80px"></h2>
+      <h1 class="aligncenter">SPF 2018</h2>
+      <div class="alignright">
+        <div class="navbar">
+          <div class="userDetailDiv">
+             <label id="userNameLabel"> </label>
+          </div>
+          <div class="dropdown">
+            <a href="../index.html?action=logout">Log Out</a>
+           </div>
+           </div>
+      </div>
+      <br>
+      <br>
+      <br>
+   </div>
+	<br>
+	<hr>
+	<br>
+	<div id="mainContent" style="padding-left: 10px"></div>
+  	<br>
+	<br>
+	<a href="dashboard.html">Back to dashboard</a>	
+</body>
+</html>

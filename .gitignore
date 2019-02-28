@@ -1,2 +1,5 @@
 #Ignore directory
 public_html/tensorFlow/spf_images/
+
+#Ignore File
+dbcongif.php

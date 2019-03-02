@@ -5,15 +5,17 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			$firstName = $conn->real_escape_string($_POST['firstName']);
 			$lastName = $conn->real_escape_string($_POST['lastName']);
+			$username = $conn->real_escape_string($_POST['uname']);
 			$emailId = $conn->real_escape_string($_POST['emailID']);
 			$birthdate = $conn->real_escape_string($_POST['birthdate']);
 			$gender = $conn->real_escape_string($_POST['gender']);
 			$password = $conn->real_escape_string($_POST['password']);
+			$encrypt = hash("sha256", $password);
 		
 		//debug_to_console($firstName . ' ' . $lastName . ' ' . $emailId . ' ' . $birthdate . ' ' . $gender . ' ' . $password);
 
-		   	$query = "insert into 2018spfdb.Users (`fname`, `lname`, `sex`, `birthdate`, `email`, `password`) 
-				values ('$firstName','$lastName','$gender', '$birthdate', '$emailId', '$password');
+		   	$query = "insert into 2018spfdb.Users (`username`, `email`, `fname`, `lname`, `sex`, `DOB`, 'passwd') 
+				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$password');
 				;";
 			$result = mysqli_query($conn,$query);
 			if(!$result) {

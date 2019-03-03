@@ -14,6 +14,8 @@
         return "";
       }
 
+
+// outdated, must replace with Location.search and use URLsearchparams      
 function findGetParameter(parameterName) {
             var result = null,
                 tmp = [];

@@ -107,6 +107,11 @@
 	<script src="js/utility.js"></script>
   	<script type="text/javascript">
     	$(document).ready(function(){
+			//Replace and test with:
+			//const urlParams = new URLSearchParams(window.location.search);
+			//const myParam = urlParams.get('myParam');	//retrieves the value of parameter from URL
+
+			// Outdated method to retrieve get method 
     		var result = findGetParameter('result');
     		if(result != null && result != '') {
     			alert(result);

@@ -7,7 +7,7 @@
 
 	if(!empty($username) && !empty($password)) {
 			    //Fetch from database
-			    $query = "SELECT username, passwd, fname, lname from 2018spfdb.Users where username = '$username' and passwd = '$encrypt'";
+			    $query = "SELECT u_id, username, passwd, fname, lname from 2018spfdb.Users where username = '$username' and passwd = '$encrypt'";
 			   
 			    $result = mysqli_query($conn,$query);
 				if(!$result) {

@@ -105,10 +105,13 @@
 	<script src="js/utility.js"></script>
   	<script type="text/javascript">
     	$(document).ready(function(){
-    		var result = findGetParameter('result');
-    		if(result != null && result != '') {
-    			alert(result);
-    			window.history.replaceState({}, document.title, "/" + "spf2018/view/login.html");
+			var urlParams = new URLSearchParams(window.location.search);
+			var result = urlParams.get('result');	//retrieves the value of parameter from URL
+
+			// check if result is not empty and display message
+    		if(result != null && result != '') {	
+    			alert(result);	// Alert user with appropriate alert message
+    			window.history.replaceState({}, document.title, "/" + "~2018spf/view/login.html");	// Remove GET values from URL to normal URL path
     		}
     	});
     </script>

@@ -14,14 +14,27 @@
 		
 		//debug_to_console($firstName . ' ' . $lastName . ' ' . $emailId . ' ' . $birthdate . ' ' . $gender . ' ' . $password);
 
-		   	$query = "INSERT INTO 2018spfdb.Users (username, email, fname, lname, sex, DOB, passwd) 
-				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$encrypt')";
-			$result = mysqli_query($conn,$query);
-			if(!$result) {
+		   	
+			//query to check if username already exist 
+			$query2 = "SELECT username from 2018spfdb.Users Where username = '$username'";
+			$check = mysqli_query($conn, $query2);
+			$row_ct = mysqli_num_rows($check);
+			/* if(!$result) {
 	    		//die("Database query failed: " . mysql_error());
 	    		header('Location: ../view/signup.html?result=User signup was unsuccessful. Please try again');
-			}	
+			} */	
+			if($row_ct == 1){
+				//header('Location: ../view/signup.html?result=User signup was unsuccessful. Username already exist');
+				echo "Username already exist";
+			}
 			else {
+				$query = "INSERT INTO 2018spfdb.Users (username, email, fname, lname, sex, DOB, passwd) 
+				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$encrypt')";
+				$result = mysqli_query($conn,$query);
+
+				$userDir = "/home/students/hernareu/public_html/Spf18Test/UserImg/" . $username . "/";
+				mkdir($userDir, 0707, true);
+
 				$last_id = mysqli_insert_id($conn);
 				//store user details in cookie
 				setcookie("userId", $last_id, time() + (86400 * 30), "/");
@@ -32,4 +45,5 @@
 				header('Location: ../view/dashboard.html');
 			}	
 	}
+	mysqli_close($conn);
 ?>

@@ -24,8 +24,8 @@
 	    		header('Location: ../view/signup.html?result=User signup was unsuccessful. Please try again');
 			} */	
 			if($row_ct == 1){
-				//header('Location: ../view/signup.html?result=User signup was unsuccessful. Username already exist');
-				echo "Username already exist";
+				header('Location: ../view/signup.html?result=User signup was unsuccessful. Username already exist');	//return result of query on URL
+				//echo "Username already exist";
 			}
 			else {
 				$query = "INSERT INTO 2018spfdb.Users (username, email, fname, lname, sex, DOB, passwd) 

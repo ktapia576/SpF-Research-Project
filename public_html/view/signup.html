@@ -112,8 +112,8 @@
 
 			// check if result is not empty and display message
     		if(result != null && result != '') {	
-    			alert(result);
-    			window.history.replaceState({}, document.title, "/" + "spf2018/view/signup.html");
+    			alert(result);	// Alert user with appropriate alert message
+    			window.history.replaceState({}, document.title, "/" + "spf2018/view/signup.html");	// Remove GET values from URL to normal URL path
     		}
     	});
 

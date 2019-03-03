@@ -106,16 +106,19 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="js/utility.js"></script>
   	<script type="text/javascript">
-    	$(document).ready(function(){
+	  	$(window).on("load", function() {
+			// Executes when complete page is fully loaded, including
+			// all frames, objects and images
+
 			var urlParams = new URLSearchParams(window.location.search);
 			var result = urlParams.get('result');	//retrieves the value of parameter from URL
 
 			// check if result is not empty and display message
     		if(result != null && result != '') {	
     			alert(result);	// Alert user with appropriate alert message
-    			window.history.replaceState({}, document.title, "/" + "~2018spf/view/signup.html");	// Remove GET values from URL to normal URL path
+    			window.history.replaceState({}, document.title, "/" + "~2018spf/view/login.html");	// Remove GET values from URL to normal URL path
     		}
-    	});
+		});
 
 		// Validate if email is from kean.edu
     	function doUIValidation() {

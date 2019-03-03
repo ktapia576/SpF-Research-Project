@@ -31,6 +31,6 @@
 					//echo $message;
 				}
 			}
-
+mysqli_close($conn);
 ?>
 	

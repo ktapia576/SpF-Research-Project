@@ -107,25 +107,24 @@
 	<script src="js/utility.js"></script>
   	<script type="text/javascript">
     	$(document).ready(function(){
-			//Replace and test with:
-			//const urlParams = new URLSearchParams(window.location.search);
-			//const myParam = urlParams.get('myParam');	//retrieves the value of parameter from URL
+			var urlParams = new URLSearchParams(window.location.search);
+			var myParam = urlParams.get('result');	//retrieves the value of parameter from URL
 
-			// Outdated method to retrieve get method 
-    		var result = findGetParameter('result');
-    		if(result != null && result != '') {
+			// check if result is not empty and display message
+    		if(result != null && result != '') {	
     			alert(result);
     			window.history.replaceState({}, document.title, "/" + "spf2018/view/signup.html");
     		}
     	});
 
+		// Validate if email is from kean.edu
     	function doUIValidation() {
     		if(!document.getElementById("emailField").value.includes("kean.edu")) {
     			
     			alert("Please enter your Kean email id only");
     			return false;
     		}
-    		if(document.getElementById("passwordField").value != document.getElementById("rePasswordField").value){
+    		if(document.getElementById("passwordField").value != document.getElementById("rePasswordField").value){	// Check if passwords match when signing up
     			
     			alert("Passwords should match");
     			return false;	

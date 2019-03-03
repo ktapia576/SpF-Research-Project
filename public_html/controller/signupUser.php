@@ -1,5 +1,5 @@
 <?php
-	require 'dbconfig.php';
+	include 'dbconfig.php';
 	$conn = Connect();
 		
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -14,9 +14,8 @@
 		
 		//debug_to_console($firstName . ' ' . $lastName . ' ' . $emailId . ' ' . $birthdate . ' ' . $gender . ' ' . $password);
 
-		   	$query = "insert into 2018spfdb.Users (`username`, `email`, `fname`, `lname`, `sex`, `DOB`, 'passwd') 
-				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$password');
-				;";
+		   	$query = "INSERT INTO 2018spfdb.Users (username, email, fname, lname, sex, DOB, passwd) 
+				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$encrypt')";
 			$result = mysqli_query($conn,$query);
 			if(!$result) {
 	    		//die("Database query failed: " . mysql_error());

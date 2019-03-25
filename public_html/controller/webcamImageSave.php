@@ -12,7 +12,7 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../tensorFlow/tempUploads/';
+	$filePath = '../UserImg/' .$userId .'/';
 
 	$dirName = dirname($filePath . $fileName);
 	if (!is_dir($dirName))

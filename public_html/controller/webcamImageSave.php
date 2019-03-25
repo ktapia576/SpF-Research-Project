@@ -1,6 +1,6 @@
 
 <?php
-include ("connection.php");
+include 'dbconfig.php';
 try
 {
 	$rawData = $_POST['imgBase64'];

@@ -5,6 +5,7 @@ try
 {
 	$rawData = $_POST['imgBase64'];
 	$userId = $_POST['userId'];
+	$username = $_POST['username'];
 	$userFName = $_POST['userFName'];
 	$userLName = $_POST['userLName'];
 	$filteredData = explode(',', $rawData);
@@ -12,7 +13,7 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../UserImg/' .$userId .'/';
+	$filePath = '../UserImg/' .$username .'/';
 
 	$dirName = dirname($filePath . $fileName);
 	if (!is_dir($dirName))
@@ -50,6 +51,7 @@ try
 	}	
 	else {
 		echo "Failure: couldn't insert into database";
+		echo "File Path is: ". $filePath;
 	}
 
 }

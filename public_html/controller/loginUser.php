@@ -23,6 +23,7 @@
 					
 					//store user details in cookie
 					setcookie("userId", $uid, time() + (86400 * 30), "/");
+					setcookie("username", $username, time() + (86400 * 30), "/");
 					setcookie("userFName", $row['fname'], time() + (86400 * 30), "/");
 					setcookie("userLName", $row['lname'], time() + (86400 * 30), "/");
 				}else{

@@ -38,6 +38,7 @@
 				$last_id = mysqli_insert_id($conn);
 				//store user details in cookie
 				setcookie("userId", $last_id, time() + (86400 * 30), "/");
+				setcookie("username", $username, time() + (86400 * 30), "/");
 				setcookie("userFName", $firstName, time() + (86400 * 30), "/");
 				setcookie("userLName", $lastName, time() + (86400 * 30), "/");
 			

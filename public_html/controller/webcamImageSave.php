@@ -24,7 +24,9 @@ try
 	fwrite($fp, $decodedData);
 	fclose($fp);
 
-	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath',date(now()));";
+	$conn=Connect();
+	$date=date('Y-m-d H:i:s');
+	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath', '$date')";
 	$result = mysqli_query($conn,$query);
 	if($result) {
 		//Tensorflow here to get output of a match or not

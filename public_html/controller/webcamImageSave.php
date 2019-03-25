@@ -8,7 +8,7 @@ try
 	$userFName = $_POST['userFName'];
 	$userLName = $_POST['userLName'];
 	$filteredData = explode(',', $rawData);
-	$decodedData = base64_decode($filteredData[1]);
+	$decodedData = base64_decode($filteredData[1]);	
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
@@ -23,7 +23,7 @@ try
 	fwrite($fp, $decodedData);
 	fclose($fp);
 
-	$query = "insert into 2018S_shelara.spf_image (uid, image_name, path, upload_date, deleteUserImage) values ('$userId', '$fileName', '$filePath',date(now()), 'N');";
+	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath',date(now()));";
 	$result = mysqli_query($conn,$query);
 	if($result) {
 		//Tensorflow here to get output of a match or not

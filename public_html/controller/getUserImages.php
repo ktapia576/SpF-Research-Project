@@ -1,5 +1,5 @@
 <?php
-	include ("connection.php");
+	include 'dbconfig.php';
 	$userId = $_GET['userId'];
 
 	$imageQuery = "select * from 2018S_shelara.spf_image where uid = '$userId' and deleteUserImage <> 'Y';";

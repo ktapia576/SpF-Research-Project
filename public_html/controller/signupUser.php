@@ -32,7 +32,7 @@
 				values ('$username','$emailId','$firstName', '$lastName', '$gender', '$birthdate', '$encrypt')";
 				$result = mysqli_query($conn,$query);
 
-				$userDir = "/home/students/hernareu/public_html/Spf18Test/UserImg/" . $username . "/";
+				$userDir = "/home/students/2018spf/public_html/UserImg/" . $username . "/";
 				mkdir($userDir, 0707, true);
 
 				$last_id = mysqli_insert_id($conn);

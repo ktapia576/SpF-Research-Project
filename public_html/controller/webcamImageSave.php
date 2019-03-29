@@ -13,9 +13,9 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../UserImg/' .$username .'/'.$fileName;
+	$filePath = '../UserImg/' .$username .'/';
 
-	$dirName = dirname($filePath . $fileName);
+	$dirName = dirname($filePath .$fileName);
 	if (!is_dir($dirName))
 	{
 	    mkdir($dirName, 0777, true);
@@ -26,7 +26,8 @@ try
 
 	$conn=Connect();
 	$date=date('Y-m-d H:i:s');
-	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath', '$date')";
+	  $filePath2 = '../UserImg/' .$username .'/'. $fileName;
+	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath2', '$date')";
 	$result = mysqli_query($conn,$query);
 	if($result) {
 		//Tensorflow here to get output of a match or not
@@ -38,6 +39,7 @@ try
 		//non functional at this point, but cqn be worked on
 		if((strpos($output , 'Success') !== false) && (strpos($output , $userFName) !== false)){
 		    //save image to respective directory as well
+
 		    $respectiveFilePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '//';      
 		    $respectivedirName = dirname($respectiveFilePath . $fileName);
 			if (!is_dir($respectivedirName ))

@@ -19,11 +19,11 @@
 	      	});
 
 	      	//use cookie to read user details
-	      	var userId = getCookie('userId');
+	      	var username = getCookie('username');
 	      
 	      	$.ajax({ 
 	              type: "GET",
-	              url: "../controller/getUserImages.php?userId=" + userId,
+	              url: "../controller/getUserImages.php?username=" + username,
 	              context: document.body,
 	              success: function(images){
 	              	var imageArray = JSON.parse(images);

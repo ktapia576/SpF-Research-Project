@@ -13,7 +13,7 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../UserImg/' .$username .'/';
+	$filePath = '../UserImg/' .$username .'/'.$fileName;
 
 	$dirName = dirname($filePath . $fileName);
 	if (!is_dir($dirName))

@@ -1,5 +1,6 @@
 #Ignore directory
 public_html/tensorFlow/spf_images/
+.vscode/
 
 #Ignore File
 public_html/controller/dbconfig.php

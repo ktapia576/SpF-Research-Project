@@ -1,8 +1,8 @@
 <?php
 	include 'dbconfig.php';
-	$username = $_GET['username']; // Get userId created from cookie and passed as GET method through AJAX
+	$userId = $_GET['userId']; // Get userId created from cookie and passed as GET method through AJAX
 
-	$imageQuery = "SELECT * FROM 2018spfdb.Images WHERE username = '$username'";
+	$imageQuery = "SELECT * FROM 2018spfdb.Images WHERE userId = '$userId'";
 	$imageQueryResult = mysqli_query($conn, $imageQuery);
 	if(!$imageQueryResult) {
 		die("Database query failed: " . mysqli_error($conn));

@@ -9,11 +9,10 @@
 	}
 	$returnVar = array();
 	$countImage = mysqli_num_rows($imageQueryResult);
-	$i = 0
+
 	if ($countImage > 0){
 		while($row = mysqli_fetch_array($imageQueryResult, MYSQLI_ASSOC)){
-	        $returnVar[$i] = $row['path'];
-	        $i++;
+	        $returnVar[] = $row;
 		}
 	}
 

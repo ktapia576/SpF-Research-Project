@@ -1,5 +1,6 @@
 <?php
 	include 'dbconfig.php';
+	$conn = Connect();
 	$userId = $_GET['userId']; // Get userId created from cookie and passed as GET method through AJAX
 
 	$imageQuery = "SELECT * FROM 2018spfdb.Images WHERE userId = '$userId'";

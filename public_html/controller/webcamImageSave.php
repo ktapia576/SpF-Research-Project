@@ -13,21 +13,22 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../UserImg/' .$username .'/';
+	$filePath = '../UserImg/' .$username .'/'. $fileName;
 
-	$dirName = dirname($filePath .$fileName);
+	/*$dirName = dirname($filePath .$fileName);
 	if (!is_dir($dirName))
 	{
 	    mkdir($dirName, 0777, true);
-	}
-	$fp = fopen($filePath .$fileName, 'w');
+	}*/
+
+	//saves image to server
+	$fp = fopen($filePath , 'w');
 	fwrite($fp, $decodedData);
 	fclose($fp);
 
 	$conn=Connect();
 	$date=date('Y-m-d H:i:s');
-	  $filePath2 = '../UserImg/' .$username .'/'. $fileName;
-	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath2', '$date')";
+	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath', '$date')";
 	$result = mysqli_query($conn,$query);
 	if($result) {
 		//Tensorflow here to get output of a match or not
@@ -37,10 +38,10 @@ try
 		echo "<pre><h3>$output</h3></pre>";
 		
 		//non functional at this point, but cqn be worked on
-		if((strpos($output , 'Success') !== false) && (strpos($output , $userFName) !== false)){
+		/*if((strpos($output , 'Success') !== false) && (strpos($output , $userFName) !== false)){
 		    //save image to respective directory as well
 
-		    $respectiveFilePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '//';      
+		    $respectiveFilePath = '/home/students/2018spf/public_html/UserImg' .$userFName . '_' . $userLName. '//';      
 		    $respectivedirName = dirname($respectiveFilePath . $fileName);
 			if (!is_dir($respectivedirName ))
 			{
@@ -50,7 +51,7 @@ try
 			fwrite($respectivefp, $decodedData);
 			fclose($respectivefp);
 			//echo $fileName. " " . $respectiveFilePath . " " . $fileName. " Image uploaded to respective Directory as well";
-		}
+		} */
 		echo "</center>";
 	}	
 	else {

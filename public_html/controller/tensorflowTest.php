@@ -1,5 +1,5 @@
 <?php
-$handle = popen("sh people_test.sh", "r");
+$handle = popen("sh ../tensorFlow/people_test.sh", "r");
 //echo "'$handle'; " . gettype($handle) . "\n";
 $read = fread($handle, 2096);
 echo "<BR>";

@@ -1,4 +1,4 @@
- # Copyright 2017 The TensorFlow Authors. All Rights Reserved.
+# Copyright 2017 The TensorFlow Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -136,13 +136,5 @@ if __name__ == "__main__":
 
   top_k = results.argsort()[-5:][::-1]
   labels = load_labels(label_file)
-  isMatchingWithSomeone = 0
   for i in top_k:
-     percentageMatch = round(results[i]*100,2)
-     if percentageMatch > 70:
-        print("Success! You are a Kean student !!")
-        print("The uploaded image has a " + str(percentageMatch) + "% match with the user: " + labels[i])
-        isMatchingWithSomeone = 1
-
-  if isMatchingWithSomeone == 0:
-    print("You don't look to be a Kean student")
+    print(labels[i], results[i])

@@ -1,2 +1,2 @@
-cd /home/students/2018spf/public_html/tensorFlow;
-python3 label_image1.py --graph=retrained_graph.pb --labels=retrained_labels.txt --input_layer=Placeholder --output_layer=final_result  --image=tempUploads/$1
+#cd /home/students/2018spf/public_html/tensorFlow;
+python3 label_image1.py --graph=retrained_graph.pb --labels=retrained_labels.txt --input_layer=Placeholder --output_layer=final_result  --image=../UserImg

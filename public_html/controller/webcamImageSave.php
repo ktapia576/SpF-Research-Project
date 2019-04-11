@@ -22,8 +22,11 @@ try
 	}*/
 
 	//saves image to server
+	touch($filePath);
+	chmod($filePath, 0705);
 	$fp = fopen($filePath , 'w');
 	fwrite($fp, $decodedData);
+
 	fclose($fp);
 
 	$conn=Connect();
@@ -33,7 +36,7 @@ try
 	if($result) {
 		//Tensorflow here to get output of a match or not
 		//run py script on image and display classify results
-		$output = shell_exec('sh ../tensorFlow/runImageClassifier.sh ');.$fileName);
+		$output = shell_exec('sh ../tensorFlow/runImageClassifier.sh '.$fileName);
 		//echo "</br>";
 		echo "<pre><h3>$output</h3></pre>";
 		

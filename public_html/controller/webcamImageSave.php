@@ -24,6 +24,7 @@ try
 	//saves image to server
 	touch($filePath);
 	chmod($filePath, 0705);
+	//chown($filePath, "2018spf");
 	$fp = fopen($filePath , 'w');
 	fwrite($fp, $decodedData);
 

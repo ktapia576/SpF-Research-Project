@@ -19,10 +19,10 @@
 			$query2 = "SELECT username from 2018spfdb.Users Where username = '$username'";
 			$check = mysqli_query($conn, $query2);
 			$row_ct = mysqli_num_rows($check);
-			/* if(!$result) {
-	    		//die("Database query failed: " . mysql_error());
+			/*if(!$check) {
+	    		die("Database query failed: " . mysql_error());
 	    		header('Location: ../view/signup.html?result=User signup was unsuccessful. Please try again');
-			} */	
+			}	*/
 			if($row_ct == 1){
 				header('Location: ../view/signup.html?result=User signup was unsuccessful. Username already exist');	//return result of query on URL
 				//echo "Username already exist";
@@ -33,6 +33,7 @@
 				$result = mysqli_query($conn,$query);
 
 				$userDir = "/home/students/2018spf/public_html/UserImg/" . $username . "/";
+				//$dirName = dirname($userDir);
 				mkdir($userDir, 0707, true);
 
 				$last_id = mysqli_insert_id($conn);

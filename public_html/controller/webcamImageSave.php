@@ -13,13 +13,14 @@ try
 	$fileName = round(microtime(true) * 1000) .'.png';
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
-	$filePath = '../UserImg/' .$username .'/'. $fileName;
+	$filePath = '/home/students/2018spf/public_html/UserImg/' .$username .'/'. $fileName;
 
-	/*$dirName = dirname($filePath .$fileName);
+	$dirName = dirname($filePath);
+	echo $dirName;
 	if (!is_dir($dirName))
 	{
 	    mkdir($dirName, 0777, true);
-	}*/
+	}
 
 	//saves image to server
 	touch($filePath);

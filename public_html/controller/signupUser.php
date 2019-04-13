@@ -35,6 +35,7 @@
 				$userDir = "/home/students/2018spf/public_html/UserImg/" . $username . "/";
 				//$dirName = dirname($userDir);
 				mkdir($userDir, 0707, true);
+				chown($filePath, "2018spf");
 
 				$last_id = mysqli_insert_id($conn);
 				//store user details in cookie

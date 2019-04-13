@@ -11,25 +11,29 @@ try
 	$filteredData = explode(',', $rawData);
 	$decodedData = base64_decode($filteredData[1]);	
 	$fileName = round(microtime(true) * 1000) .'.png';
+	$owner = "2018spf";
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
 	$filePath = '/home/students/2018spf/public_html/UserImg/' .$username .'/'. $fileName;
-
+	
 	$dirName = dirname($filePath);
-	echo $dirName;
+	//echo $dirName;
 	if (!is_dir($dirName))
 	{
+
 	    mkdir($dirName, 0777, true);
+	    chown($filePath, "2018spf");
 	}
 
 	//saves image to server
 	touch($filePath);
 	chmod($filePath, 0705);
-	//chown($filePath, "2018spf");
+	chown($filePath, $owner);
 	$fp = fopen($filePath , 'w');
 	fwrite($fp, $decodedData);
-
 	fclose($fp);
+
+ 
 
 	$conn=Connect();
 	$date=date('Y-m-d H:i:s');

@@ -27,12 +27,17 @@ try
 
 	//saves image to server
 	touch($filePath);
-	chmod($filePath, 0705);
-	chown($filePath, $owner);
 	$fp = fopen($filePath , 'w');
 	fwrite($fp, $decodedData);
 	fclose($fp);
 
+	chmod($filePath, 0707);
+	chown($filePath, $owner);
+
+	echo "<br>cmd1:$cmd\n";
+	$cmd= "/user/bin/chown $owner $filePath";
+	exec($cmd);
+	echo "<br>cmd2:$cmd\n";
  
 
 	$conn=Connect();

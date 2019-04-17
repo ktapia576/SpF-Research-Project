@@ -18,7 +18,7 @@ else {
 			</tr>";
 	while($row = mysqli_fetch_assoc($result)){
 		echo "<tr>";
-		//echo "<td>". $row['path']."</td>";
+		echo "<td>". $row['path']."</td>";
 		echo "<td><img src='".$row['path']."' width = '400' height='250'></td>";
 		echo "<td><input type='radio'></td>";
 		echo "</tr>";

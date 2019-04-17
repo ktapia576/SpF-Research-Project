@@ -15,6 +15,7 @@ try
 	//Create the imageÂ 
 	//$filePath = '/home/students/2018spf/spf_images/' .$userFName . '_' . $userLName. '/';
 	$filePath = '/home/students/2018spf/public_html/UserImg/' .$username .'/'. $fileName;
+
 	
 	$dirName = dirname($filePath);
 	//echo $dirName;
@@ -38,8 +39,29 @@ try
 	$cmd= "/user/bin/chown $owner $filePath";
 	exec($cmd);
 	echo "<br>cmd2:$cmd\n";
- 
 
+
+	//calls script to output label of image. It will create a temp image then remove it
+	$filePath2 = '/home/students/2018spf/public_html/uploads/temp.png';
+	touch($filePath2);
+	$fp2 = fopen($filePath2 , 'w');
+	fwrite($fp2, $decodedData);
+	fclose($fp2);
+
+	chmod($filePath, 0707);
+	$command = "python3 /home/students/2018spf/public_html/tensorFlowTest/label_image.py --graph=/home/students/2018spf/public_html/tensorFlowTest/retrained_graph.pb --labels=/home/students/2018spf/public_html/tensorFlowTest/retrained_labels.txt --input_layer=Placeholder --output_layer=final_result --image=/home/students/2018spf/public_html/uploads/temp.png";
+	$handle = popen($command, "r");
+	//echo "'$handle'; " . gettype($handle) . "\n";
+	$read = fread($handle, 2096);
+	echo "<BR>";
+	$row = explode("\n", trim($read));
+	for($i = 0; $i< count($row); $i++){
+	    $a = $row[$i];
+	    echo "$a"."<BR>";
+	}
+	pclose($handle);
+ 
+// adds path to database 
 	$conn=Connect();
 	$date=date('Y-m-d H:i:s');
 	$query = "INSERT INTO Images (userID, path, uploadDate) VALUES ('$userId', '$filePath', '$date')";
